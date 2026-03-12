@@ -1,6 +1,8 @@
 {
   "KIKO": {
-    "users": [],
+    "users": [
+      "roblox"
+    ],
     "color": "#5865F2",
     "gradient": {
       "color1": "#000000",
