@@ -209,5 +209,3 @@ end
 
 nametagCache = fetchFromGitHub()
 lastCacheTime = tick()
-
-print("✅ Roblox Nametag System loaded!")
