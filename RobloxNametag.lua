@@ -11,7 +11,7 @@ local RunService = game:GetService("RunService")
 local HttpService = game:GetService("HttpService")
 
 -- ===== CONFIGURATION =====
-local GITHUB_RAW_URL = "https://raw.githubusercontent.com/ykknzo-hub/YKv2/refs/heads/main/nametags.json"
+local GITHUB_RAW_URL = "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/nametags.json"
 local NAMETAG_HEIGHT = 4
 local BOB_SPEED = 2
 local BOB_AMOUNT = 0.3
@@ -55,7 +55,7 @@ local function fetchFromGitHub()
     if success then
         return result
     else
-        warn("⚠️ Failed to fetch nametags from GitHub")
+        warn("Failed to fetch nametags from GitHub")
         return nametagCache
     end
 end
@@ -129,17 +129,40 @@ local function createNametag(character, playerName, tagData)
         mainFrame.BackgroundColor3 = hexToColor3(tagData and tagData.color or "#5865F2")
     end
     
-    -- Text label
-    local textLabel = Instance.new("TextLabel")
-    textLabel.Name = "NametagText"
-    textLabel.Size = UDim2.new(1, 0, 1, 0)
-    textLabel.BackgroundTransparency = 1
-    textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    textLabel.TextScaled = true
-    textLabel.Font = Enum.Font.GothamBold
-    textLabel.ZIndex = 2
-    textLabel.Parent = mainFrame
-    textLabel.Text = tagData and tagData.tag or playerName
+    -- Text container for multi-line layout
+    local textContainer = Instance.new("Frame")
+    textContainer.Name = "TextContainer"
+    textContainer.Size = UDim2.new(1, 0, 1, 0)
+    textContainer.BackgroundTransparency = 1
+    textContainer.BorderSizePixel = 0
+    textContainer.ZIndex = 2
+    textContainer.Parent = mainFrame
+    
+    -- Top line - Tag name
+    local topLabel = Instance.new("TextLabel")
+    topLabel.Name = "TagName"
+    topLabel.Size = UDim2.new(1, 0, 0.5, 0)
+    topLabel.Position = UDim2.new(0, 0, 0, 0)
+    topLabel.BackgroundTransparency = 1
+    topLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    topLabel.TextScaled = true
+    topLabel.Font = Enum.Font.GothamBold
+    topLabel.ZIndex = 2
+    topLabel.Parent = textContainer
+    topLabel.Text = tagData and tagData.tag or "NAMETAG"
+    
+    -- Bottom line - Username with @
+    local bottomLabel = Instance.new("TextLabel")
+    bottomLabel.Name = "Username"
+    bottomLabel.Size = UDim2.new(1, 0, 0.5, 0)
+    bottomLabel.Position = UDim2.new(0, 0, 0.5, 0)
+    bottomLabel.BackgroundTransparency = 1
+    bottomLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    bottomLabel.TextScaled = true
+    bottomLabel.Font = Enum.Font.Gotham
+    bottomLabel.ZIndex = 2
+    bottomLabel.Parent = textContainer
+    bottomLabel.Text = "@" .. playerName
     
     billboardGui:SetAttribute("bobTime", 0)
     return billboardGui
