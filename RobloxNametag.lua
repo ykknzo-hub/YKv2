@@ -11,7 +11,7 @@ local RunService = game:GetService("RunService")
 local HttpService = game:GetService("HttpService")
 
 -- ===== CONFIGURATION =====
-local GITHUB_RAW_URL = "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/nametags.json"
+local GITHUB_RAW_URL = "https://raw.githubusercontent.com/ykknzo-hub/YKv2/refs/heads/main/nametags.json"
 local NAMETAG_HEIGHT = 4
 local BOB_SPEED = 2
 local BOB_AMOUNT = 0.3
