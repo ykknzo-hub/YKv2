@@ -1,0 +1,11 @@
+{
+  "Premium": {
+    "users": ["BuilderMan", "TestUser"],
+    "color": "#5865F2",
+    "gradient": {
+      "color1": "#5865F2",
+      "color2": "#FF0000"
+    },
+    "created": "2024-01-01"
+  }
+}
