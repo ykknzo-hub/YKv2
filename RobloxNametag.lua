@@ -15,10 +15,10 @@ local GITHUB_RAW_URL = "https://raw.githubusercontent.com/ykknzo-hub/YKv2/refs/h
 local NAMETAG_HEIGHT = 4
 local BOB_SPEED = 2
 local BOB_AMOUNT = 0.3
-local BORDER_SIZE = 1
-local CORNER_RADIUS = 4
-local NAMETAG_WIDTH = 4.5
-local NAMETAG_HEIGHT_SIZE = 1.2
+local BORDER_SIZE = 0.5
+local CORNER_RADIUS = 2
+local NAMETAG_WIDTH = 3
+local NAMETAG_HEIGHT_SIZE = 0.8
 local CACHE_REFRESH_INTERVAL = 30
 -- ==========================
 
@@ -132,8 +132,8 @@ local function createNametag(character, playerName, tagData)
     -- Text container for multi-line layout with padding
     local textContainer = Instance.new("Frame")
     textContainer.Name = "TextContainer"
-    textContainer.Size = UDim2.new(1, -4, 1, -2)
-    textContainer.Position = UDim2.new(0, 2, 0, 1)
+    textContainer.Size = UDim2.new(1, -2, 1, -1)
+    textContainer.Position = UDim2.new(0, 1, 0, 0.5)
     textContainer.BackgroundTransparency = 1
     textContainer.BorderSizePixel = 0
     textContainer.ZIndex = 2
@@ -148,7 +148,7 @@ local function createNametag(character, playerName, tagData)
     topLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
     topLabel.TextScaled = true
     topLabel.Font = Enum.Font.GothamBold
-    topLabel.TextSize = 14
+    topLabel.TextSize = 10
     topLabel.ZIndex = 2
     topLabel.Parent = textContainer
     topLabel.Text = tagData and tagData.tag or "TAG"
@@ -162,7 +162,7 @@ local function createNametag(character, playerName, tagData)
     bottomLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
     bottomLabel.TextScaled = true
     bottomLabel.Font = Enum.Font.Gotham
-    bottomLabel.TextSize = 12
+    bottomLabel.TextSize = 8
     bottomLabel.ZIndex = 2
     bottomLabel.Parent = textContainer
     bottomLabel.Text = "@" .. playerName
