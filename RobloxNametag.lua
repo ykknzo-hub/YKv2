@@ -15,10 +15,10 @@ local GITHUB_RAW_URL = "https://raw.githubusercontent.com/ykknzo-hub/YKv2/refs/h
 local NAMETAG_HEIGHT = 4
 local BOB_SPEED = 2
 local BOB_AMOUNT = 0.3
-local BORDER_SIZE = 2
-local CORNER_RADIUS = 8
-local NAMETAG_WIDTH = 8
-local NAMETAG_HEIGHT_SIZE = 2
+local BORDER_SIZE = 1
+local CORNER_RADIUS = 4
+local NAMETAG_WIDTH = 4.5
+local NAMETAG_HEIGHT_SIZE = 1.2
 local CACHE_REFRESH_INTERVAL = 30
 -- ==========================
 
@@ -55,7 +55,7 @@ local function fetchFromGitHub()
     if success then
         return result
     else
-        warn("Failed to fetch nametags from GitHub")
+        warn("⚠️ Failed to fetch nametags from GitHub")
         return nametagCache
     end
 end
@@ -129,10 +129,11 @@ local function createNametag(character, playerName, tagData)
         mainFrame.BackgroundColor3 = hexToColor3(tagData and tagData.color or "#5865F2")
     end
     
-    -- Text container for multi-line layout
+    -- Text container for multi-line layout with padding
     local textContainer = Instance.new("Frame")
     textContainer.Name = "TextContainer"
-    textContainer.Size = UDim2.new(1, 0, 1, 0)
+    textContainer.Size = UDim2.new(1, -4, 1, -2)
+    textContainer.Position = UDim2.new(0, 2, 0, 1)
     textContainer.BackgroundTransparency = 1
     textContainer.BorderSizePixel = 0
     textContainer.ZIndex = 2
@@ -147,9 +148,10 @@ local function createNametag(character, playerName, tagData)
     topLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
     topLabel.TextScaled = true
     topLabel.Font = Enum.Font.GothamBold
+    topLabel.TextSize = 14
     topLabel.ZIndex = 2
     topLabel.Parent = textContainer
-    topLabel.Text = tagData and tagData.tag or "NAMETAG"
+    topLabel.Text = tagData and tagData.tag or "TAG"
     
     -- Bottom line - Username with @
     local bottomLabel = Instance.new("TextLabel")
@@ -160,6 +162,7 @@ local function createNametag(character, playerName, tagData)
     bottomLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
     bottomLabel.TextScaled = true
     bottomLabel.Font = Enum.Font.Gotham
+    bottomLabel.TextSize = 12
     bottomLabel.ZIndex = 2
     bottomLabel.Parent = textContainer
     bottomLabel.Text = "@" .. playerName
